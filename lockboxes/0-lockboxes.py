@@ -4,16 +4,15 @@
 
 def canUnlockAll(boxes):
     """Function for unlockboxes"""
-    num_boxes = len(boxes)
-    visited = [False] * num_boxes
-    visited[0] = True
-    stack = [0]
+    unlocked_boxes = [False] * len(boxes)
+    unlocked_boxes[0] = True
+    keys = [0]
 
-    while stack:
-        current_box = stack.pop()
-        for key in boxes[current_box]:
-            if not visited[key]:
-                visited[key] = True
-                stack.append(key)
+    while keys:
+        box_idx = keys.pop(0)
+        for key in boxes[box_idx]:
+            if not unlocked_boxes[key]:
+                unlocked_boxes[key] = True
+                keys.append(key)
 
-    return all(visited)
+    return all(unlocked_boxes)
